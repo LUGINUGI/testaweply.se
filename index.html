@@ -4,24 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Screenshot Prototype</title>
+    <style>
+        /* Set the background image */
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('Skærmbillede 2024-11-07 151243.png'); /* Replace with the exact file name */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Style for the chat widget */
+        #chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+        }
+        
+        #chat-widget h2 {
+            font-size: 16px;
+            margin: 0 0 5px;
+        }
+
+        #chat-widget p {
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        #chat-widget button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        #chat-widget button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <!-- Screenshot Image -->
-    <img src="https://example.com/path_to_your_screenshot.png" alt="Screenshot" style="width:100%; max-width:600px;">
-
-    <!-- Widget Container -->
-    <div id="widget-container"></div>
-
-    <!-- JavaScript Widget -->
-    <script>
-        // Insert widget content into the widget container
-        document.getElementById('widget-container').innerHTML = `
-            <div style="padding: 10px; border: 1px solid #ccc;">
-                <h2>Widget Title</h2>
-                <p>This is a sample widget for demonstration.</p>
-                <button onclick="alert('Widget Button Clicked!')">Click Me</button>
-            </div>
-        `;
-    </script>
+    <!-- Chat Widget -->
+    <div id="chat-widget">
+        <h2>Chat with Us</h2>
+        <p>Need help? Click below to start a chat.</p>
+        <button onclick="alert('Chat started!')">Start Chat</button>
+    </div>
 </body>
 </html>
