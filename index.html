@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Website</title>
+    <title>Testaweply.se</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
@@ -18,13 +19,36 @@
             background: #f9f9f9;
         }
 
+        #logo {
+            margin-top: 20px;
+            width: 100px;
+            height: auto;
+            display: none; /* Hidden by default, only shown if no 1.png */
+        }
+
         .content {
             display: block;
+            max-width: 90%;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
         }
 
         a {
+            font-size: 1.5em;
             color: #007bff;
             text-decoration: none;
+            font-weight: bold;
         }
 
         a:hover {
@@ -33,6 +57,9 @@
     </style>
 </head>
 <body>
+    <!-- Weply logo, visible only if 1.png is not present -->
+    <img src="weply.png" alt="Weply Logo" id="logo">
+    
     <div class="content" id="content">
         <h1>Detta är en testsida för din webbplats</h1>
         <p>Klicka <a href="https://weply.se" target="_blank">här</a> för att besöka Weply.</p>
@@ -44,17 +71,25 @@
         img.src = '1.png';
         
         img.onload = function() {
-            // If 1.png loads successfully, hide the content and set it as background
+            // If 1.png loads successfully, hide the content, set as background, and load the chat widget
             document.body.style.backgroundImage = "url('1.png')";
             document.body.style.backgroundSize = "cover";
             document.body.style.backgroundPosition = "center";
             document.body.style.backgroundRepeat = "no-repeat";
             document.getElementById("content").style.display = "none";
+            document.getElementById("logo").style.display = "none"; // Hide the logo
+
+            // Dynamically load the chat widget
+            const chatScript = document.createElement("script");
+            chatScript.src = "https://app.weply.chat/widget/9930edb31407e5ba09a5f1df560478ae";
+            chatScript.async = true;
+            document.body.appendChild(chatScript);
         };
         
         img.onerror = function() {
-            // If 1.png doesn't exist, do nothing, and the default content will be shown
-            console.log("1.png not found, displaying default content.");
+            // If 1.png doesn't exist, show the Weply logo and default content without chat widget.
+            console.log("1.png not found, displaying default content with logo.");
+            document.getElementById("logo").style.display = "block"; // Show the logo
         };
     </script>
 </body>
