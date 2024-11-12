@@ -22,18 +22,6 @@
             display: block;
         }
 
-        /* When 1.png is present, hide text and use it as background */
-        body:has(img[src="1.png"]) .content {
-            display: none;
-        }
-
-        body:has(img[src="1.png"]) {
-            background-image: url('1.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
         a {
             color: #007bff;
             text-decoration: none;
@@ -45,9 +33,29 @@
     </style>
 </head>
 <body>
-    <div class="content">
+    <div class="content" id="content">
         <h1>Detta är en testsida för din webbplats</h1>
         <p>Klicka <a href="https://weply.se" target="_blank">här</a> för att besöka Weply.</p>
     </div>
+
+    <script>
+        // Check if 1.png exists by attempting to load it
+        const img = new Image();
+        img.src = '1.png';
+        
+        img.onload = function() {
+            // If 1.png loads successfully, hide the content and set it as background
+            document.body.style.backgroundImage = "url('1.png')";
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundRepeat = "no-repeat";
+            document.getElementById("content").style.display = "none";
+        };
+        
+        img.onerror = function() {
+            // If 1.png doesn't exist, do nothing, and the default content will be shown
+            console.log("1.png not found, displaying default content.");
+        };
+    </script>
 </body>
 </html>
