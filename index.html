@@ -3,21 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Screenshot Prototype</title>
+    <title>Test Website</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-image: url('1.png'); /* Replace with your exact file name */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: #333;
+            height: 100vh;
+            background: #f9f9f9;
+        }
+
+        .content {
+            display: block;
+        }
+
+        /* When 1.png is present, hide text and use it as background */
+        body:has(img[src="1.png"]) .content {
+            display: none;
+        }
+
+        body:has(img[src="1.png"]) {
+            background-image: url('1.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            height: 100vh;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <!-- Embed the chat widget script here -->
-  <script src="https://app.weply.chat/widget/9930edb31407e5ba09a5f1df560478ae" async></script>
+    <div class="content">
+        <h1>Detta är en testsida för din webbplats</h1>
+        <p>Klicka <a href="https://weply.se" target="_blank">här</a> för att besöka Weply.</p>
+    </div>
 </body>
 </html>
