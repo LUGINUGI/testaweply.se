@@ -17,7 +17,6 @@
             color: #333;
             height: 100vh;
             background-color: #f9f9f9; /* Fallback color */
-            background-image: url('https://testaweply.se/1.png'); /* HTTPS secure URL */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -30,7 +29,7 @@
         }
 
         #content {
-            z-index: 1; /* Ensure content is above background */
+            z-index: 1; /* Ensure content is above the background */
             background-color: rgba(255, 255, 255, 0.8); /* Optional for readability */
             padding: 20px;
             border-radius: 10px;
@@ -60,7 +59,7 @@
     </style>
 </head>
 <body>
-    <!-- Default content, hidden if background loads -->
+    <!-- Default content -->
     <img src="https://testaweply.se/weply.png" alt="Weply Logo" id="logo">
     
     <div id="content">
@@ -69,20 +68,38 @@
     </div>
 
     <script>
-        // Verify if the background image exists
+        // Load the screenshot as the background image
         const img = new Image();
-        img.src = 'https://testaweply.se/1.png'; // Full HTTPS URL for background
+        img.src = 'https://testaweply.se/1.png'; // Full HTTPS URL for the background image
+        console.log("Attempting to load: " + img.src);
 
         img.onload = function () {
             console.log("Background image loaded successfully.");
-            document.body.style.backgroundImage = "url('https://testaweply.se/1.png')"; // Set as background
-            document.getElementById("content").style.display = "none"; // Hide content if background loads
+            document.body.style.backgroundImage = "url('https://testaweply.se/1.png')";
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundRepeat = "no-repeat";
+
+            // Hide the default content once the background is applied
+            document.getElementById("content").style.display = "none";
+
+            // Load the Weply chat widget dynamically
+            const chatScript = document.createElement("script");
+            chatScript.src = "https://app.weply.chat/widget/9930edb31407e5ba09a5f1df560478ae"; // Chat widget URL
+            chatScript.async = true;
+            document.body.appendChild(chatScript);
         };
 
         img.onerror = function () {
-            console.log("Background image failed to load, displaying logo.");
+            console.error("Failed to load the background image.");
             document.getElementById("logo").style.display = "block"; // Show logo if background fails
         };
+
+        // Fallback: Ensure the Weply chat widget always loads, even if the background fails
+        const fallbackChatScript = document.createElement("script");
+        fallbackChatScript.src = "https://app.weply.chat/widget/9930edb31407e5ba09a5f1df560478ae"; // Chat widget URL
+        fallbackChatScript.async = true;
+        document.body.appendChild(fallbackChatScript);
     </script>
 </body>
 </html>
