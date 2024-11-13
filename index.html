@@ -21,9 +21,9 @@
 
         #logo {
             margin-top: 20px;
-            width: 300px; /* Triple the original size */
+            width: 300px;
             height: auto;
-            display: none; /* Hidden by default, only shown if no 1.png */
+            display: none;
         }
 
         h1 {
@@ -50,8 +50,7 @@
     </style>
 </head>
 <body>
-    <!-- Weply logo, visible only if 1.png is not present -->
-    <img src="weply.png" alt="Weply Logo" id="logo">
+    <img src="https://yourdomain.com/weply.png" alt="Weply Logo" id="logo">
     
     <div id="content">
         <h1>Detta är en testsida för din webbplats</h1>
@@ -61,20 +60,20 @@
     <script>
         // Check if 1.png exists by attempting to load it
         const img = new Image();
-        img.src = '1.png';
-        
+        img.src = 'https://yourdomain.com/1.png'; // Use HTTPS
+
         img.onload = function() {
             // If 1.png loads successfully, hide the content, set as background, and load the chat widget
-            document.body.style.backgroundImage = "url('1.png')";
+            document.body.style.backgroundImage = "url('https://yourdomain.com/1.png')"; // Use HTTPS
             document.body.style.backgroundSize = "cover";
             document.body.style.backgroundPosition = "center";
             document.body.style.backgroundRepeat = "no-repeat";
             document.getElementById("content").style.display = "none";
-            document.getElementById("logo").style.display = "none"; // Hide the logo
+            document.getElementById("logo").style.display = "none";
 
             // Dynamically load the chat widget
             const chatScript = document.createElement("script");
-            chatScript.src = "https://app.weply.chat/widget/9930edb31407e5ba09a5f1df560478ae";
+            chatScript.src = "https://app.weply.chat/widget/9930edb31407e5ba09a5f1df560478ae"; // Use HTTPS
             chatScript.async = true;
             document.body.appendChild(chatScript);
         };
@@ -82,7 +81,7 @@
         img.onerror = function() {
             // If 1.png doesn't exist, show the Weply logo and default content without chat widget.
             console.log("1.png not found, displaying default content with logo.");
-            document.getElementById("logo").style.display = "block"; // Show the logo
+            document.getElementById("logo").style.display = "block";
         };
     </script>
 </body>
