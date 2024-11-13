@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>testaweply.se</title>
+    <title>Test Weply</title>
     <style>
         body {
             margin: 0;
@@ -68,10 +68,20 @@
     </div>
 
     <script>
-        // Load the screenshot as the background image
+        // Helper function to load the chat widget once
+        const loadChatWidget = () => {
+            if (!document.querySelector("script[src='https://app.weply.chat/widget/9930edb31407e5ba09a5f1df560478ae']")) {
+                const chatScript = document.createElement("script");
+                chatScript.src = "https://app.weply.chat/widget/9930edb31407e5ba09a5f1df560478ae";
+                chatScript.async = true;
+                document.body.appendChild(chatScript);
+                console.log("Chat widget loaded.");
+            }
+        };
+
+        // Load the background image and chat widget if successful
         const img = new Image();
         img.src = 'https://testaweply.se/1.png'; // Full HTTPS URL for the background image
-        console.log("Attempting to load: " + img.src);
 
         img.onload = function () {
             console.log("Background image loaded successfully.");
@@ -80,26 +90,17 @@
             document.body.style.backgroundPosition = "center";
             document.body.style.backgroundRepeat = "no-repeat";
 
-            // Hide the default content once the background is applied
+            // Hide default content once the background is applied
             document.getElementById("content").style.display = "none";
 
-            // Load the Weply chat widget dynamically
-            const chatScript = document.createElement("script");
-            chatScript.src = "https://app.weply.chat/widget/9930edb31407e5ba09a5f1df560478ae"; // Chat widget URL
-            chatScript.async = true;
-            document.body.appendChild(chatScript);
+            // Load the Weply chat widget
+            loadChatWidget();
         };
 
         img.onerror = function () {
             console.error("Failed to load the background image.");
             document.getElementById("logo").style.display = "block"; // Show logo if background fails
         };
-
-        // Fallback: Ensure the Weply chat widget always loads, even if the background fails
-        const fallbackChatScript = document.createElement("script");
-        fallbackChatScript.src = "https://app.weply.chat/widget/9930edb31407e5ba09a5f1df560478ae"; // Chat widget URL
-        fallbackChatScript.async = true;
-        document.body.appendChild(fallbackChatScript);
     </script>
 </body>
 </html>
